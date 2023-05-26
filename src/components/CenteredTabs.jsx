@@ -1,15 +1,9 @@
-// import * as React from "react";
 import { PropTypes } from "prop-types";
-// import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
-export default function CenteredTabs({
-  content,
-  value,
-  handleChange,
-}) {
+export default function CenteredTabs({ content, value, handleChange }) {
   const movieTabs = ["now playing", "top rated", "popular", "upcoming"];
   const tvTabs = ["airing today", "top rated", "on the air", "popular"];
   const personTabs = ["popular"];
