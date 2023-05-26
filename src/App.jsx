@@ -12,6 +12,7 @@ function App() {
   const [showContent, setShowContent] = useState("movie");
   const [contentList, setContentList] = useState([]);
   const [tab, setTab] = useState("now playing");
+  const [value, setValue] = useState(0);
 
   const changeContent = (event) => {
     let link = event.target.innerText.toLowerCase();
@@ -25,10 +26,16 @@ function App() {
     }
     // if (link === "person")
     setShowContent(link);
+    setValue(0);
   };
 
   const changeTab = (event) => {
     setTab(event.target.innerText.toLowerCase());
+  };
+
+  const handleTabChange = (event, newValue) => {
+    setValue(newValue);
+    changeTab(event);
   };
 
   useEffect(() => {
@@ -71,7 +78,13 @@ function App() {
     <div>
       <MenuBar handleClick={changeContent} />
       <Container maxWidth="md">
-        <CenteredTabs tab={tab} changeTab={changeTab} content={showContent} />
+        <CenteredTabs
+          handleChange={handleTabChange}
+          value={value}
+          tab={tab}
+          changeTab={changeTab}
+          content={showContent}
+        />
         <Grid container spacing={2}>
           {showContent === "movie" && (
             <>

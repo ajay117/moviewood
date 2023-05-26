@@ -1,30 +1,18 @@
 // import * as React from "react";
 import { PropTypes } from "prop-types";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
-export default function CenteredTabs({ changeTab, content, tab, link }) {
-  const [value, setValue] = useState(0);
-
+export default function CenteredTabs({
+  content,
+  value,
+  handleChange,
+}) {
   const movieTabs = ["now playing", "top rated", "popular", "upcoming"];
   const tvTabs = ["airing today", "top rated", "on the air", "popular"];
   const personTabs = ["popular"];
-
-  let arr;
-  if (content === "movie") {
-    arr = movieTabs;
-  } else if (content === "tv") {
-    arr = tvTabs;
-  } else if (content === "person") {
-    arr = personTabs;
-  }
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    changeTab(event);
-  };
 
   return (
     <Box
@@ -53,5 +41,6 @@ export default function CenteredTabs({ changeTab, content, tab, link }) {
 
 CenteredTabs.propTypes = {
   content: PropTypes.string.isRequired,
-  changeTab: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
