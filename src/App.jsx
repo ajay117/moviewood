@@ -8,11 +8,14 @@ import MoviesMediaCard from "./components/MoviesMediaCard";
 import PeoplesMediaCard from "./components/PeoplesMediaCard";
 import TvMediaCard from "./components/TvMediaCard";
 
+import { Box, Button } from "@mui/material";
+
 function App() {
   const [showContent, setShowContent] = useState("movie");
   const [contentList, setContentList] = useState([]);
   const [tab, setTab] = useState("now playing");
   const [value, setValue] = useState(0);
+  const [page, setPage] = useState(1);
 
   const changeContent = (event) => {
     let link = event.target.innerText.toLowerCase();
@@ -38,6 +41,25 @@ function App() {
     changeTab(event);
   };
 
+  const nextPage = () => {
+    setPage((previousPage) => previousPage + 1);
+    window.scroll({
+      top: 0,
+      left: 0,
+    });
+  };
+
+  const prevPage = () => {
+    if (page > 1) {
+      setPage((previousPage) => previousPage - 1);
+      window.scroll({
+        top: 0,
+        left: 0,
+      });
+    }
+    return;
+  };
+
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -54,7 +76,7 @@ function App() {
     }
 
     fetch(
-      `https://api.themoviedb.org/3/${showContent}/${tabParam}?language=en-US&page=1`,
+      `https://api.themoviedb.org/3/${showContent}/${tabParam}?language=en-US&page=${page}`,
       {
         method: "GET",
         headers: {
@@ -72,7 +94,7 @@ function App() {
       // Abort the fetch request when the component unmounts
       controller.abort();
     };
-  }, [showContent, tab]);
+  }, [showContent, tab, page]);
 
   return (
     <div>
@@ -116,6 +138,15 @@ function App() {
             </>
           )}
         </Grid>
+
+        <Box sx={{ marginTop: "30px", textAlign: "center" }}>
+          <Button onClick={prevPage} variant="outlined">
+            Go Back
+          </Button>
+          <Button onClick={nextPage} variant="outlined">
+            Go Next
+          </Button>
+        </Box>
       </Container>
     </div>
   );
