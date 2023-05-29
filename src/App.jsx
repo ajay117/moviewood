@@ -10,6 +10,7 @@ import TvMediaCard from "./components/TvMediaCard";
 import Loader from "./components/Loader";
 
 import { Box, Button } from "@mui/material";
+import HeroSection from "./components/HeroSection";
 function App() {
   const [showContent, setShowContent] = useState("movie");
   const [contentList, setContentList] = useState([]);
@@ -95,6 +96,7 @@ function App() {
   return (
     <div>
       <MenuBar handleClick={changeContent} />
+      <HeroSection />
       {contentList.length < 1 ? (
         <Loader />
       ) : (
@@ -112,7 +114,8 @@ function App() {
                 {contentList.map((movie, index) => (
                   <Grid
                     key={index}
-                    item
+                    item lg={4}
+                    xl={3}
                     sm={6}
                     xs={12}
                     sx={{ display: "flex", justifyContent: { xs: "center" } }}
@@ -127,7 +130,8 @@ function App() {
                 {contentList.map((people, index) => (
                   <Grid
                     key={index}
-                    item
+                    item lg={4}
+                    xl={3}
                     sm={6}
                     xs={12}
                     sx={{ display: "flex", justifyContent: { xs: "center" } }}
@@ -142,7 +146,8 @@ function App() {
                 {contentList.map((tvshow, index) => (
                   <Grid
                     key={index}
-                    item
+                    item lg={4}
+                    xl={3}
                     sm={6}
                     xs={12}
                     sx={{ display: "flex", justifyContent: { xs: "center" } }}
@@ -165,6 +170,15 @@ function App() {
           </Box>
         </Container>
       )}
+
+      <footer>
+        <div class="photo-credit">
+          Thanks to the HeroSection image by
+          <a target="blank" href="https://unsplash.com/photos/AtPWnYNDJnM?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink">
+            {" "}Krists Luhaers on unsplash
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }
