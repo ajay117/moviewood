@@ -7,6 +7,7 @@ import MenuBar from "./components/MenuBar";
 import MoviesMediaCard from "./components/MoviesMediaCard";
 import PeoplesMediaCard from "./components/PeoplesMediaCard";
 import TvMediaCard from "./components/TvMediaCard";
+import Loader from "./components/Loader";
 
 import { Box, Button } from "@mui/material";
 
@@ -95,56 +96,60 @@ function App() {
   return (
     <div>
       <MenuBar handleClick={changeContent} />
-      <Container maxWidth="md">
-        <CenteredTabs
-          handleChange={handleTabChange}
-          value={value}
-          tab={tab}
-          changeTab={changeTab}
-          content={showContent}
-        />
-        <Grid container spacing={2}>
-          {showContent === "movie" && (
-            <>
-              {contentList.map((movie, index) => (
-                <Grid key={index} item sm={6} xs={12}>
-                  <MoviesMediaCard movie={movie} />
-                </Grid>
-              ))}
-            </>
-          )}
+      {contentList.length < 1 ? (
+        <Loader />
+      ) : (
+        <Container maxWidth="md">
+          <CenteredTabs
+            handleChange={handleTabChange}
+            value={value}
+            tab={tab}
+            changeTab={changeTab}
+            content={showContent}
+          />
+          <Grid container spacing={2}>
+            {showContent === "movie" && (
+              <>
+                {contentList.map((movie, index) => (
+                  <Grid key={index} item sm={6} xs={12}>
+                    <MoviesMediaCard movie={movie} />
+                  </Grid>
+                ))}
+              </>
+            )}
 
-          {showContent === "person" && (
-            <>
-              {contentList.map((people, index) => (
-                <Grid key={index} item sm={6} xs={12}>
-                  <PeoplesMediaCard people={people} />
-                </Grid>
-              ))}
-            </>
-          )}
+            {showContent === "person" && (
+              <>
+                {contentList.map((people, index) => (
+                  <Grid key={index} item sm={6} xs={12}>
+                    <PeoplesMediaCard people={people} />
+                  </Grid>
+                ))}
+              </>
+            )}
 
-          {showContent === "tv" && (
-            <>
-              {contentList.map((tvshow, index) => (
-                <Grid key={index} item sm={6} xs={12}>
-                  <TvMediaCard tvshow={tvshow} />
-                </Grid>
-              ))}
-            </>
-          )}
-        </Grid>
+            {showContent === "tv" && (
+              <>
+                {contentList.map((tvshow, index) => (
+                  <Grid key={index} item sm={6} xs={12}>
+                    <TvMediaCard tvshow={tvshow} />
+                  </Grid>
+                ))}
+              </>
+            )}
+          </Grid>
 
-        <Box sx={{ marginTop: "30px", textAlign: "center" }}>
-          <Button
-            sx={{ marginBottom: "10px", width: "200px" }}
-            onClick={nextPage}
-            variant="contained"
-          >
-            See More
-          </Button>
-        </Box>
-      </Container>
+          <Box sx={{ marginTop: "30px", textAlign: "center" }}>
+            <Button
+              sx={{ marginBottom: "10px", width: "200px" }}
+              onClick={nextPage}
+              variant="contained"
+            >
+              See More
+            </Button>
+          </Box>
+        </Container>
+      )}
     </div>
   );
 }
