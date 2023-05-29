@@ -2,7 +2,7 @@ import CenteredTabs from "./components/CenteredTabs";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MenuBar from "./components/MenuBar";
 import MoviesMediaCard from "./components/MoviesMediaCard";
 import PeoplesMediaCard from "./components/PeoplesMediaCard";
@@ -16,6 +16,7 @@ function App() {
   const [tab, setTab] = useState("now playing");
   const [value, setValue] = useState(0);
   const [page, setPage] = useState(1);
+  const previousPageStateRef = useRef(1);
 
   const changeContent = (event) => {
     let link = event.target.innerText.toLowerCase();
@@ -43,21 +44,6 @@ function App() {
 
   const nextPage = () => {
     setPage((previousPage) => previousPage + 1);
-    window.scroll({
-      top: 0,
-      left: 0,
-    });
-  };
-
-  const prevPage = () => {
-    if (page > 1) {
-      setPage((previousPage) => previousPage - 1);
-      window.scroll({
-        top: 0,
-        left: 0,
-      });
-    }
-    return;
   };
 
   useEffect(() => {
@@ -87,7 +73,17 @@ function App() {
       }
     )
       .then((response) => response.json())
-      .then((response) => setContentList(response.results))
+      .then((response) => {
+        if (previousPageStateRef.current !== page) {
+          setContentList((previousState) => [
+            ...previousState,
+            ...response.results,
+          ]);
+        } else {
+          setContentList(response.results);
+        }
+        previousPageStateRef.current = page;
+      })
       .catch((err) => console.error(err));
 
     return () => {
@@ -140,11 +136,12 @@ function App() {
         </Grid>
 
         <Box sx={{ marginTop: "30px", textAlign: "center" }}>
-          <Button onClick={prevPage} variant="outlined">
-            Go Back
-          </Button>
-          <Button onClick={nextPage} variant="outlined">
-            Go Next
+          <Button
+            sx={{ marginBottom: "10px", width: "200px" }}
+            onClick={nextPage}
+            variant="contained"
+          >
+            See More
           </Button>
         </Box>
       </Container>
