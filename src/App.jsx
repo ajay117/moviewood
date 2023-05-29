@@ -10,7 +10,6 @@ import TvMediaCard from "./components/TvMediaCard";
 import Loader from "./components/Loader";
 
 import { Box, Button } from "@mui/material";
-
 function App() {
   const [showContent, setShowContent] = useState("movie");
   const [contentList, setContentList] = useState([]);
@@ -99,7 +98,7 @@ function App() {
       {contentList.length < 1 ? (
         <Loader />
       ) : (
-        <Container maxWidth="md">
+        <Container sx={{}} maxWidth="md">
           <CenteredTabs
             handleChange={handleTabChange}
             value={value}
@@ -111,27 +110,43 @@ function App() {
             {showContent === "movie" && (
               <>
                 {contentList.map((movie, index) => (
-                  <Grid key={index} item sm={6} xs={12}>
+                  <Grid
+                    key={index}
+                    item
+                    sm={6}
+                    xs={12}
+                    sx={{ display: "flex", justifyContent: { xs: "center" } }}
+                  >
                     <MoviesMediaCard movie={movie} />
                   </Grid>
                 ))}
               </>
             )}
-
             {showContent === "person" && (
               <>
                 {contentList.map((people, index) => (
-                  <Grid key={index} item sm={6} xs={12}>
+                  <Grid
+                    key={index}
+                    item
+                    sm={6}
+                    xs={12}
+                    sx={{ display: "flex", justifyContent: { xs: "center" } }}
+                  >
                     <PeoplesMediaCard people={people} />
                   </Grid>
                 ))}
               </>
             )}
-
             {showContent === "tv" && (
               <>
                 {contentList.map((tvshow, index) => (
-                  <Grid key={index} item sm={6} xs={12}>
+                  <Grid
+                    key={index}
+                    item
+                    sm={6}
+                    xs={12}
+                    sx={{ display: "flex", justifyContent: { xs: "center" } }}
+                  >
                     <TvMediaCard tvshow={tvshow} />
                   </Grid>
                 ))}
