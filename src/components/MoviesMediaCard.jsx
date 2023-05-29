@@ -3,9 +3,16 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { useState } from "react";
 
 export default function MoviesMediaCard({ movie }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
+  const [fullContent, setFullContent] = useState(false);
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    setFullContent(true);
+  };
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -18,9 +25,20 @@ export default function MoviesMediaCard({ movie }) {
           {movie.title}
         </Typography>
         <Typography variant="body2" color="p">
-          {movie.overview.length < 100
-            ? movie.overview
-            : movie.overview.slice(0, 99) + " ..."}
+          {!fullContent ? (
+            movie.overview.length < 100 ? (
+              movie.overview
+            ) : (
+              <span>
+                {movie.overview.slice(0, 99)}{" "}
+                <a href="#" onClick={handleClick}>
+                  More...
+                </a>
+              </span>
+            )
+          ) : (
+            movie.overview
+          )}
         </Typography>
         <Typography mt={2} variant="body2" color="p">
           <span style={{ fontWeight: "700", marginRight: "5px" }}>

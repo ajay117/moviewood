@@ -3,9 +3,17 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { useState } from "react";
 
 export default function TvMediaCard({ tvshow }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500" + tvshow.poster_path;
+  const [fullContent, setFullContent] = useState(false);
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    setFullContent(true);
+  };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -18,9 +26,20 @@ export default function TvMediaCard({ tvshow }) {
           {tvshow.original_name}
         </Typography>
         <Typography variant="body2" color="p">
-          {tvshow.overview.length < 100
-            ? tvshow.overview
-            : tvshow.overview.slice(0, 99) + " ..."}
+          {!fullContent ? (
+            tvshow.overview.length < 100 ? (
+              tvshow.overview
+            ) : (
+              <span>
+                {tvshow.overview.slice(0, 99)}{" "}
+                <a href="#" onClick={handleClick}>
+                  More...
+                </a>
+              </span>
+            )
+          ) : (
+            tvshow.overview
+          )}
         </Typography>
         <Typography mt={2} variant="body2" color="p">
           <span style={{ fontWeight: "700", marginRight: "5px" }}>
