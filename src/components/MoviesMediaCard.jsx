@@ -4,6 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
+import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 
 export default function MoviesMediaCard({ movie }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
@@ -32,7 +33,7 @@ export default function MoviesMediaCard({ movie }) {
               <span>
                 {movie.overview.slice(0, 99)}{" "}
                 <a href="#" onClick={handleClick}>
-                  More...
+                  <ArrowCircleRightIcon sx={{ verticalAlign: "middle" }} />
                 </a>
               </span>
             )

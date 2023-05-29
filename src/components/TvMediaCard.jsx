@@ -4,6 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
+import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 
 export default function TvMediaCard({ tvshow }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500" + tvshow.poster_path;
@@ -33,7 +34,7 @@ export default function TvMediaCard({ tvshow }) {
               <span>
                 {tvshow.overview.slice(0, 99)}{" "}
                 <a href="#" onClick={handleClick}>
-                  More...
+                  <ArrowCircleRightIcon sx={{ verticalAlign: "middle" }} />
                 </a>
               </span>
             )
