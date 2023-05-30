@@ -18,6 +18,20 @@ function App() {
   const [value, setValue] = useState(0);
   const [page, setPage] = useState(1);
   const previousPageStateRef = useRef(1);
+  const [searchInput, setSearchInput] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchInputChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setShowContent("search");
+    setSearchQuery(searchInput);
+    setTab("multi");
+    setSearchInput("");
+  };
 
   const changeContent = (event) => {
     let link = event.target.innerText.toLowerCase();
@@ -62,17 +76,18 @@ function App() {
       tabParam = "on_the_air";
     }
 
-    fetch(
-      `https://api.themoviedb.org/3/${showContent}/${tabParam}?language=en-US&page=${page}`,
-      {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          Authorization: "Bearer " + import.meta.env.VITE_AUTH_TOKEN,
-        },
-        signal: signal, // Pass the signal to the fetch options
-      }
-    )
+    const url =
+      showContent !== "search"
+        ? `https://api.themoviedb.org/3/${showContent}/${tabParam}?language=en-US&page=${page}`
+        : `https://api.themoviedb.org/3/${showContent}/${tabParam}?query=${searchQuery}&include_adult=false&language=en-US&$page=1`;
+    fetch(url, {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: "Bearer " + import.meta.env.VITE_AUTH_TOKEN,
+      },
+      signal: signal, // Pass the signal to the fetch options
+    })
       .then((response) => response.json())
       .then((response) => {
         if (previousPageStateRef.current !== page) {
@@ -91,12 +106,16 @@ function App() {
       // Abort the fetch request when the component unmounts
       controller.abort();
     };
-  }, [showContent, tab, page]);
+  }, [showContent, tab, page, searchQuery]);
 
   return (
     <div>
       <MenuBar handleClick={changeContent} />
-      <HeroSection />
+      <HeroSection
+        input={searchInput}
+        handleSubmit={handleSubmit}
+        handleChange={handleSearchInputChange}
+      />
       {contentList.length < 1 ? (
         <Loader />
       ) : (
@@ -114,7 +133,8 @@ function App() {
                 {contentList.map((movie, index) => (
                   <Grid
                     key={index}
-                    item lg={4}
+                    item
+                    lg={4}
                     xl={3}
                     sm={6}
                     xs={12}
@@ -130,7 +150,8 @@ function App() {
                 {contentList.map((people, index) => (
                   <Grid
                     key={index}
-                    item lg={4}
+                    item
+                    lg={4}
                     xl={3}
                     sm={6}
                     xs={12}
@@ -146,13 +167,39 @@ function App() {
                 {contentList.map((tvshow, index) => (
                   <Grid
                     key={index}
-                    item lg={4}
+                    item
+                    lg={4}
                     xl={3}
                     sm={6}
                     xs={12}
                     sx={{ display: "flex", justifyContent: { xs: "center" } }}
                   >
                     <TvMediaCard tvshow={tvshow} />
+                  </Grid>
+                ))}
+              </>
+            )}
+
+            {showContent === "search" && (
+              <>
+                {contentList.map((obj, index) => (
+                  <Grid
+                    key={index}
+                    item
+                    lg={4}
+                    xl={3}
+                    sm={6}
+                    xs={12}
+                    sx={{ display: "flex", justifyContent: { xs: "center" } }}
+                  >
+                    {/* Render specific card according to results.media_type returned from content list */}
+                    {obj.media_type === "tv" && <TvMediaCard tvshow={obj} />}
+                    {obj.media_type === "movie" && (
+                      <MoviesMediaCard movie={obj} />
+                    )}
+                    {obj.media_type === "person" && (
+                      <PeoplesMediaCard people={obj} />
+                    )}
                   </Grid>
                 ))}
               </>
@@ -172,10 +219,14 @@ function App() {
       )}
 
       <footer>
-        <div class="photo-credit">
+        <div className="photo-credit">
           Thanks to the HeroSection image by
-          <a target="blank" href="https://unsplash.com/photos/AtPWnYNDJnM?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink">
-            {" "}Krists Luhaers on unsplash
+          <a
+            target="blank"
+            href="https://unsplash.com/photos/AtPWnYNDJnM?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink"
+          >
+            {" "}
+            Krists Luhaers on unsplash
           </a>
         </div>
       </footer>
