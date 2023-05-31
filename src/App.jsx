@@ -108,6 +108,10 @@ function App() {
     };
   }, [showContent, tab, page, searchQuery]);
 
+  if (showContent.length < 1) {
+    return <Loader />;
+  }
+
   return (
     <div>
       <MenuBar handleClick={changeContent} />
@@ -222,7 +226,7 @@ function App() {
         </Container>
       )}
 
-      <footer style={{marginTop: "20px"}}>
+      <footer style={{ marginTop: "20px" }}>
         <div className="photo-credit">
           Thanks to the HeroSection image by
           <a
@@ -240,3 +244,8 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
