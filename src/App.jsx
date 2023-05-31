@@ -112,7 +112,7 @@ function App() {
     <div>
       <MenuBar handleClick={changeContent} />
       <HeroSection
-        input={searchInput}
+        searchInput={searchInput}
         handleSubmit={handleSubmit}
         handleChange={handleSearchInputChange}
       />
@@ -212,7 +212,7 @@ function App() {
               onClick={nextPage}
               variant="contained"
             >
-              See More
+              Load More
             </Button>
           </Box>
         </Container>
@@ -229,6 +229,7 @@ function App() {
             Krists Luhaers on unsplash
           </a>
         </div>
+        <p>Copyrigh &copy; 2023 Ajay KC.</p>
       </footer>
     </div>
   );

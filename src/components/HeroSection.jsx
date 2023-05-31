@@ -1,4 +1,4 @@
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 import { useState } from "react";
 import "./HeroSection.css";
@@ -32,8 +32,8 @@ export default function HeroSection({
   );
 }
 
-// HeroSection.propTypes = {
-//   handleChange: PropTypes.func,
-//   handleSubmit: PropTypes.func,
-//   searchInput: PropTypes.string,
-// };
+HeroSection.propTypes = {
+  handleChange: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  searchInput: PropTypes.string,
+};
