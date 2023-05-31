@@ -35,10 +35,17 @@ function App() {
 
   const changeContent = (event) => {
     let link = event.target.innerText.toLowerCase();
-    if (link === "tv") setTab("airing today");
-    if (link === "movie") setTab("now playing");
+    if (link === "tv") {
+      setTab("airing today");
+      setShowContent("tv");
+    }
+    if (link === "movie") {
+      setTab("now playing");
+      setShowContent("movie");
+    }
     if (link === "person" && showContent !== "person") {
       setTab("popular");
+      setShowContent("person");
     }
     if (link !== showContent) {
       setContentList([]);
@@ -48,13 +55,13 @@ function App() {
     setValue(0);
   };
 
-  const changeTab = (event) => {
-    setTab(event.target.innerText.toLowerCase());
-  };
+  // const changeTab = (event) => {
+  // };
 
   const handleTabChange = (event, newValue) => {
     setValue(newValue);
-    changeTab(event);
+    setTab(event.target.innerText.toLowerCase());
+    // changeTab(event);
   };
 
   const nextPage = () => {
@@ -128,7 +135,6 @@ function App() {
             handleChange={handleTabChange}
             value={value}
             tab={tab}
-            changeTab={changeTab}
             content={showContent}
           />
           <Grid container spacing={2}>
@@ -244,8 +250,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-
