@@ -206,19 +206,23 @@ function App() {
             )}
           </Grid>
 
-          <Box sx={{ marginTop: "30px", textAlign: "center" }}>
-            <Button
-              sx={{ marginBottom: "10px", width: "200px" }}
-              onClick={nextPage}
-              variant="contained"
-            >
-              Load More
-            </Button>
-          </Box>
+          {showContent !== "search" && (
+            <>
+              <Box sx={{ marginTop: "30px", textAlign: "center" }}>
+                <Button
+                  sx={{ marginBottom: "10px", width: "200px" }}
+                  onClick={nextPage}
+                  variant="contained"
+                >
+                  Load More
+                </Button>
+              </Box>
+            </>
+          )}
         </Container>
       )}
 
-      <footer>
+      <footer style={{marginTop: "20px"}}>
         <div className="photo-credit">
           Thanks to the HeroSection image by
           <a
