@@ -20,6 +20,7 @@ function App() {
   const previousPageStateRef = useRef(1);
   const [searchInput, setSearchInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [totalPages, setTotalPages] = useState(0);
 
   const handleSearchInputChange = (e) => {
     setSearchInput(e.target.value);
@@ -31,6 +32,7 @@ function App() {
     setSearchQuery(searchInput);
     setTab("multi");
     setSearchInput("");
+    setPage(1);
   };
 
   const changeContent = (event) => {
@@ -60,7 +62,6 @@ function App() {
 
   const handleTabChange = (event, newValue) => {
     setValue(newValue);
-    console.log("Tab value: " + event.target.innerText.toLowerCase());
     setTab(event.target.innerText.toLowerCase());
     // changeTab(event);
   };
@@ -92,8 +93,6 @@ function App() {
         // Handle unknown tab values
         break;
     }
-
-    console.log(tabParam);
     const url =
       showContent !== "search"
         ? `https://api.themoviedb.org/3/${showContent}/${tabParam}?language=en-US&page=${page}`
@@ -115,6 +114,7 @@ function App() {
           ]);
         } else {
           setContentList(response.results);
+          setTotalPages(response.total_pages);
         }
         previousPageStateRef.current = page;
       })
@@ -227,7 +227,7 @@ function App() {
             )}
           </Grid>
 
-          {showContent !== "search" && (
+          {totalPages > page && (
             <>
               <Box sx={{ marginTop: "30px", textAlign: "center" }}>
                 <Button
