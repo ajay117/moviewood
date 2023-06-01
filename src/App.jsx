@@ -60,6 +60,7 @@ function App() {
 
   const handleTabChange = (event, newValue) => {
     setValue(newValue);
+    console.log("Tab value: " + event.target.innerText.toLowerCase());
     setTab(event.target.innerText.toLowerCase());
     // changeTab(event);
   };
@@ -72,17 +73,27 @@ function App() {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    let tabParam = tab;
-    if (tab === "now playing") {
-      tabParam = "now_playing";
-    } else if (tab === "top rated") {
-      tabParam = "top_rated";
-    } else if (tab === "airing today") {
-      tabParam = "airing_today";
-    } else if (tab === "on the air") {
-      tabParam = "on_the_air";
+    let tabParam = tab.trim();
+
+    switch (tabParam) {
+      case "now playing":
+        tabParam = "now_playing";
+        break;
+      case "top rated":
+        tabParam = "top_rated";
+        break;
+      case "airing today":
+        tabParam = "airing_today";
+        break;
+      case "on the air":
+        tabParam = "on_the_air";
+        break;
+      default:
+        // Handle unknown tab values
+        break;
     }
 
+    console.log(tabParam);
     const url =
       showContent !== "search"
         ? `https://api.themoviedb.org/3/${showContent}/${tabParam}?language=en-US&page=${page}`
