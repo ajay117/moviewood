@@ -37,6 +37,7 @@ function App() {
 
   const changeContent = (event) => {
     let link = event.target.innerText.toLowerCase();
+    link = link.replace(/\n/g, "");
     if (link === "tv") {
       setTab("airing today");
       setShowContent("tv");
