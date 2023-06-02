@@ -8,9 +8,11 @@ import MoviesMediaCard from "./components/MoviesMediaCard";
 import PeoplesMediaCard from "./components/PeoplesMediaCard";
 import TvMediaCard from "./components/TvMediaCard";
 import Loader from "./components/Loader";
+import AppAlert from "./components/Alert";
 
 import { Box, Button } from "@mui/material";
 import HeroSection from "./components/HeroSection";
+
 function App() {
   const [showContent, setShowContent] = useState("movie");
   const [contentList, setContentList] = useState([]);
@@ -21,18 +23,22 @@ function App() {
   const [searchInput, setSearchInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [totalPages, setTotalPages] = useState(0);
+  const [isResultEmpty, setIsResultEmpty] = useState(false);
 
   const handleSearchInputChange = (e) => {
     setSearchInput(e.target.value);
+    setIsResultEmpty(false);
   };
 
   const handleSubmit = (e) => {
+    if (searchInput === "") return null;
     e.preventDefault();
     setShowContent("search");
     setSearchQuery(searchInput);
     setTab("multi");
     setSearchInput("");
     setPage(1);
+    setIsResultEmpty(false);
   };
 
   const changeContent = (event) => {
@@ -108,11 +114,14 @@ function App() {
     })
       .then((response) => response.json())
       .then((response) => {
+        setIsResultEmpty(response.total_results === 0 ? true : false);
+        console.log(response);
         if (previousPageStateRef.current !== page) {
           setContentList((previousState) => [
             ...previousState,
             ...response.results,
           ]);
+          // console.log(response);
         } else {
           setContentList(response.results);
           setTotalPages(response.total_pages);
@@ -127,9 +136,9 @@ function App() {
     };
   }, [showContent, tab, page, searchQuery]);
 
-  if (showContent.length < 1) {
-    return <Loader />;
-  }
+  // if (contentList.length < 1 && !isResultEmpty) {
+  //   return <Loader />;
+  // }
 
   return (
     <div>
@@ -139,7 +148,9 @@ function App() {
         handleSubmit={handleSubmit}
         handleChange={handleSearchInputChange}
       />
-      {contentList.length < 1 ? (
+      {isResultEmpty ? (
+        <AppAlert />
+      ) : contentList.length < 1 && !isResultEmpty ? (
         <Loader />
       ) : (
         <Container sx={{}} maxWidth="md">
