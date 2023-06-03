@@ -39,6 +39,7 @@ function App() {
     setSearchInput("");
     setPage(1);
     setIsResultEmpty(false);
+    setContentList([]);
   };
 
   const changeContent = (event) => {
@@ -62,6 +63,8 @@ function App() {
     // if (link === "person")
     setShowContent(link);
     setValue(0);
+    // setPage(1);
+    // previousPageStateRef.current = 1;
   };
 
   // const changeTab = (event) => {
