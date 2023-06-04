@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 export default function MoviesMediaCard({ movie }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
@@ -16,7 +17,7 @@ export default function MoviesMediaCard({ movie }) {
     setFullContent(true);
   };
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345}}>
       <CardMedia
         sx={{ height: 140 }}
         image={imageUrl}
@@ -24,7 +25,7 @@ export default function MoviesMediaCard({ movie }) {
       />
       <CardContent>
         <Typography gutterBottom variant="h6" component="h2">
-          <Link to={`/movie/${movie.id}`}>{movie.title}</Link> 
+          {movie.title}
         </Typography>
         <Typography variant="body2" color="p">
           {!fullContent ? (
@@ -49,6 +50,13 @@ export default function MoviesMediaCard({ movie }) {
           {movie.release_date}
         </Typography>
       </CardContent>
+      <Link to={`/movie/${movie.id}`}>
+        <div>
+          <Button sx={{ width: "100%"}} variant="contained">
+            See More
+          </Button>
+        </div>
+      </Link>
     </Card>
   );
 }
