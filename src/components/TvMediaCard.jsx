@@ -5,6 +5,8 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 
 export default function TvMediaCard({ tvshow }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500" + tvshow.poster_path;
@@ -49,6 +51,13 @@ export default function TvMediaCard({ tvshow }) {
           {tvshow.first_air_date}
         </Typography>
       </CardContent>
+      <Link to={`/tvshow/${tvshow.id}`}>
+        <div>
+          <Button sx={{ width: "100%"}} variant="contained">
+            See More
+          </Button>
+        </div>
+      </Link>
     </Card>
   );
 }
