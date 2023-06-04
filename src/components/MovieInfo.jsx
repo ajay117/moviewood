@@ -79,7 +79,7 @@ function MovieInfo() {
         </div>
       </div>
 
-      <h3>Videos:</h3>
+      <h3 style={{textAlign: "center"}}>Videos:</h3>
       <div className="grid-container">
         {videos.map(
           (item, index) =>
