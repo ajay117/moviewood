@@ -242,7 +242,7 @@ function Home() {
                 <Button
                   sx={{ marginBottom: "10px", width: "200px" }}
                   onClick={nextPage}
-                  variant="contained"
+                  variant="outlined"
                 >
                   Load More
                 </Button>
@@ -263,7 +263,13 @@ function Home() {
             Krists Luhaers on unsplash
           </a>
         </div>
-        <p>Copyrigh &copy; 2023 Ajay KC.</p>
+        <p>
+          Developed by{" "}
+          <a href="https://ajaykc.netlify.app/" target="_blank">
+            Ajay KC
+          </a>
+          .
+        </p>
       </footer>
     </div>
   );
