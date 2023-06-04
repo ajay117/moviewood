@@ -23,9 +23,6 @@ function MovieInfo() {
   };
 
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
     fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
       .then((response) => response.json())
       .then((response) => setMovieDetails(response))
@@ -44,10 +41,7 @@ function MovieInfo() {
 
   return (
     <Container sx={{ padding: "20px" }} maxWidth="md">
-      {/* {console.log(movieDetails)} */}
-      {console.log(videos)}
       <h2 className="text-center">{movieDetails.title}</h2>
-      {/* <h3>ID: {id} </h3> */}
 
       <div className="box">
         <div className="img">
@@ -79,20 +73,21 @@ function MovieInfo() {
         </div>
       </div>
 
-      <h3 style={{textAlign: "center"}}>Videos:</h3>
+      <h3 style={{ textAlign: "center" }}>Related videos:</h3>
       <div className="grid-container">
         {videos.map(
           (item, index) =>
             index < 5 && (
-              <div key={item.id} className="grid-container_child">
+              <div
+                style={{ border: "1px solid black", padding: "20px" }}
+                key={item.id}
+                className="grid-container_child"
+              >
                 <iframe
                   src={`https://www.youtube.com/embed/${item.key}`}
                 ></iframe>
-                <p>
-                  <b>Type: </b>
-                  {item.type}
-                </p>
-                <Divider sx={{borderWidth: 2}} />
+                <p>{item.name}</p>
+                <Divider sx={{ borderWidth: 2 }} />
               </div>
             )
         )}
@@ -102,4 +97,3 @@ function MovieInfo() {
 }
 
 export default MovieInfo;
-
