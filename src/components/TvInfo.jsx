@@ -4,6 +4,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { Divider } from "@mui/material";
+import Header from "./Header";
 
 function TvInfo() {
   let { id } = useParams();
@@ -38,56 +39,62 @@ function TvInfo() {
   }, []);
 
   return (
-    <Container sx={{ padding: "20px" }} maxWidth="md">
-      {console.log(videos)}
-      <h2 className="text-center">{tvShows.name}</h2>
-      {/* <h3>ID: {id} </h3> */}
+    <div>
+      <Header />
 
-      <div className="box">
-        <div className="img">
-          <img
-            src={"https://image.tmdb.org/t/p/w500" + tvShows.poster_path}
-            alt=""
-            style={{ maxHeight: "300px" }}
-          />
+      <Container sx={{ padding: "20px" }} maxWidth="md">
+        {console.log(videos)}
+        <h2 className="text-center">{tvShows.name}</h2>
+        {/* <h3>ID: {id} </h3> */}
+
+        <div className="box">
+          <div className="img">
+            <img
+              src={"https://image.tmdb.org/t/p/w500" + tvShows.poster_path}
+              alt=""
+              style={{ maxHeight: "300px" }}
+            />
+          </div>
+
+          <div>
+            <p>{tvShows.overview}</p>
+            <p>
+              <b>Homepage:</b>{" "}
+              <a href={tvShows.homepage} target="_blank">
+                {tvShows.homepage}
+              </a>
+            </p>
+
+            <p>
+              <b>First Air Date:-</b> {tvShows.first_air_date}
+            </p>
+            <p>
+              <b>Rating:</b> {tvShows.vote_average}
+            </p>
+          </div>
         </div>
 
-        <div>
-          <p>{tvShows.overview}</p>
-          <p>
-            <b>Homepage:</b>{" "}
-            <a href={tvShows.homepage} target="_blank">
-              {tvShows.homepage}
-            </a>
-          </p>
-
-          <p>
-            <b>First Air Date:-</b> {tvShows.first_air_date}
-          </p>
-          <p>
-            <b>Rating:</b> {tvShows.vote_average}
-          </p>
+        <h3 style={{ textAlign: "center" }}>Related videos:</h3>
+        <div className="grid-container">
+          {videos.map(
+            (item, index) =>
+              index < 5 && (
+                <div
+                  style={{ border: "1px solid black", padding: "20px" }}
+                  key={item.id}
+                  className="grid-container_child"
+                >
+                  <iframe
+                    src={`https://www.youtube.com/embed/${item.key}`}
+                  ></iframe>
+                  <p>{item.name}</p>
+                  <Divider sx={{ borderWidth: 2 }} />
+                </div>
+              )
+          )}
         </div>
-      </div>
-
-      <h3 style={{ textAlign: "center" }}>Related videos:</h3>
-      <div className="grid-container">
-        {videos.map(
-          (item, index) =>
-            index < 5 && (
-              <div style={{border: "1px solid black", padding: "20px"}} key={item.id} className="grid-container_child">
-                <iframe
-                  src={`https://www.youtube.com/embed/${item.key}`}
-                ></iframe>
-                <p>
-                {item.name}
-                </p>
-                <Divider sx={{ borderWidth: 2 }} />
-              </div>
-            )
-        )}
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 }
 
