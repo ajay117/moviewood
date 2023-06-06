@@ -5,11 +5,14 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { Divider } from "@mui/material";
 import Header from "./Header";
+import Img from "./../assets/blank_img.webp";
 
 function TvInfo() {
   let { id } = useParams();
   const [tvShows, setTvShows] = useState([]);
   const [videos, setTvVideos] = useState([]);
+  const [cast, setCast] = useState([]);
+
   const controller = new AbortController();
   const signal = controller.signal;
   const options = {
@@ -22,19 +25,17 @@ function TvInfo() {
   };
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/tv/${id}?language=en-US`, options)
-      .then((response) => response.json())
-      .then((response) => setTvShows(response))
-      .catch((err) => console.error(err));
-  }, []);
-
-  useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/tv/${id}/videos?language=en-US`,
+      `https://api.themoviedb.org/3/tv/${id}?language=en-US&append_to_response=credits,videos`,
       options
     )
       .then((response) => response.json())
-      .then((response) => setTvVideos(response.results))
+      .then((response) => {
+        console.log(response);
+        setTvShows(response);
+        setTvVideos(response.videos.results);
+        setCast(response.credits.cast);
+      })
       .catch((err) => console.error(err));
   }, []);
 
@@ -43,7 +44,7 @@ function TvInfo() {
       <Header />
 
       <Container sx={{ padding: "20px" }} maxWidth="md">
-        {console.log(videos)}
+        {/* {console.log(videos)} */}
         <h2 className="text-center">{tvShows.name}</h2>
         {/* <h3>ID: {id} </h3> */}
 
@@ -92,6 +93,34 @@ function TvInfo() {
                 </div>
               )
           )}
+        </div>
+
+        <h3 style={{ textAlign: "center" }}>Cast:</h3>
+        <div className="grid-container">
+          {cast.map((item, index) => (
+            <div
+              key={item.id}
+              style={{ marginLeft: "10px", marginRight: "10px" }}
+            >
+              <div>
+                <img
+                  style={{ width: "300px" }}
+                  src={
+                    item.profile_path
+                      ? `https://image.tmdb.org/t/p/w500/${item.profile_path}`
+                      : Img
+                  }
+                  alt=""
+                />
+              </div>
+              <p>
+                <b>Original name:</b> {item.name}
+              </p>
+              <p>
+                <b>Character:</b> {item.character}
+              </p>
+            </div>
+          ))}
         </div>
       </Container>
     </div>
