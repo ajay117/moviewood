@@ -17,6 +17,7 @@ function MovieInfo() {
   const controller = new AbortController();
   const signal = controller.signal;
   const videoLink = "https://www.youtube.com/watch?v=";
+  let budget = movieDetails.budget || 0;
 
   const options = {
     method: "GET",
@@ -43,7 +44,6 @@ function MovieInfo() {
       .then((response) => setVideos(response.results))
       .catch((err) => console.error(err));
   }, []);
-  const budget = movieDetails.budget;
 
   return (
     <div>
@@ -70,7 +70,7 @@ function MovieInfo() {
               </a>
             </p>
             <p>
-              <b>Budget:</b> ${formatNumber(budget)}
+              <b>Budget:</b> $ {formatNumber(budget)}
             </p>
 
             <p>
