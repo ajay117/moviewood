@@ -102,9 +102,9 @@ function MovieInfo() {
         </div>
 
         <h3 style={{ textAlign: "center" }}>Cast:</h3>
-        {cast.map((item, index) => (
-          <div key={item.id} className="grid-container">
-            <div>
+        <div className="grid-container">
+          {cast.map((item, index) => (
+            <div key={item.id}>
               <div>
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
@@ -118,8 +118,8 @@ function MovieInfo() {
                 <b>Character:</b> {item.character}
               </p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </Container>
     </div>
   );
