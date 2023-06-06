@@ -14,6 +14,7 @@ function MovieInfo() {
   let { id } = useParams();
   const [movieDetails, setMovieDetails] = useState([]);
   const [videos, setVideos] = useState([]);
+  const [cast, setCast] = useState([]);
   const controller = new AbortController();
   const signal = controller.signal;
   const videoLink = "https://www.youtube.com/watch?v=";
@@ -29,19 +30,17 @@ function MovieInfo() {
   };
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
-      .then((response) => response.json())
-      .then((response) => setMovieDetails(response))
-      .catch((err) => console.error(err));
-  }, []);
-
-  useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
+      `https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_response=credits,videos`,
       options
     )
       .then((response) => response.json())
-      .then((response) => setVideos(response.results))
+      .then((response) => {
+        // console.log(response.credits);
+        setVideos(response.videos.results);
+        setMovieDetails(response);
+        setCast(response.credits.cast);
+      })
       .catch((err) => console.error(err));
   }, []);
 
@@ -101,6 +100,26 @@ function MovieInfo() {
               )
           )}
         </div>
+
+        <h3 style={{ textAlign: "center" }}>Cast:</h3>
+        {cast.map((item, index) => (
+          <div key={item.id} className="grid-container">
+            <div>
+              <div>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
+                  alt=""
+                />
+              </div>
+              <p>
+                <b>Original name:</b> {item.name}
+              </p>
+              <p>
+                <b>Character:</b> {item.character}
+              </p>
+            </div>
+          </div>
+        ))}
       </Container>
     </div>
   );
