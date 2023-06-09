@@ -82,6 +82,7 @@ function MovieInfo() {
         </div>
 
         <h3 style={{ textAlign: "center" }}>Related videos:</h3>
+        {videos.length > 0 ? (
         <div className="grid-container">
           {videos.map(
             (item, index) =>
@@ -99,14 +100,15 @@ function MovieInfo() {
                 </div>
               )
           )}
-        </div>
+        </div>)  : <p style={{paddingBottom: "20px"}} className="text-center">No Videos</p>
+        }
 
         <h3 style={{ textAlign: "center" }}>Cast:</h3>
         <div className="grid-container">
           {cast.map((item, index) => (
             <div key={item.id}>
-              <div>
-                <img
+              <div style={{textAlign: "center"}}>
+                <img style={{width: "400px"}}
                   src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
                   alt=""
                 />
@@ -117,6 +119,14 @@ function MovieInfo() {
               <p>
                 <b>Character:</b> {item.character}
               </p>
+
+              <Link to={`/people/${item.id}`} target="_blank">
+                <div>
+                  <Button sx={{ width: "100%" }} variant="contained">
+                    See More
+                  </Button>
+                </div>
+              </Link>
             </div>
           ))}
         </div>
