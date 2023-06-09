@@ -11,6 +11,8 @@ import AppAlert from "./Alert";
 import { Box, Button } from "@mui/material";
 import HeroSection from "./HeroSection";
 import Footer from "./Footer";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 function Home() {
   const [showContent, setShowContent] = useState("movie");
@@ -77,6 +79,20 @@ function Home() {
 
   const nextPage = () => {
     setPage((previousPage) => previousPage + 1);
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  };
+
+  const prevPage = () => {
+    setPage((previousPage) => previousPage - 1);
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
   };
 
   useEffect(() => {
@@ -118,15 +134,15 @@ function Home() {
       .then((response) => {
         setIsResultEmpty(response.total_results === 0 ? true : false);
         console.log(response);
-        if (previousPageStateRef.current !== page) {
-          setContentList((previousState) => [
-            ...previousState,
-            ...response.results,
-          ]);
-        } else {
-          setContentList(response.results);
-          setTotalPages(response.total_pages);
-        }
+        // if (previousPageStateRef.current !== page) {
+        //   setContentList((previousState) => [
+        //     ...previousState,
+        //     ...response.results,
+        //   ]);
+        // } else {
+        setContentList(response.results);
+        setTotalPages(response.total_pages);
+        // }
         previousPageStateRef.current = page;
       })
       .catch((err) => console.error(err));
@@ -237,19 +253,38 @@ function Home() {
             )}
           </Grid>
 
-          {totalPages > page && (
-            <>
-              <Box sx={{ marginTop: "30px", textAlign: "center" }}>
-                <Button
-                  sx={{ marginBottom: "10px", width: "200px" }}
-                  onClick={nextPage}
-                  variant="outlined"
-                >
-                  Load More
-                </Button>
-              </Box>
-            </>
-          )}
+          <Grid sx={{justifyContent: "center"}} container spacing={2}>
+            <Grid item>
+              {page > 1 && (
+                <>
+                  <Box sx={{ marginTop: "30px", textAlign: "center" }}>
+                    <Button
+                      sx={{ marginBottom: "10px" }}
+                      onClick={prevPage}
+                      variant="outlined"
+                    >
+                      <ArrowBackIosNewIcon />Previous
+                    </Button>
+                  </Box>
+                </>
+              )}
+            </Grid>
+            <Grid item>
+              {totalPages > page && (
+                <>
+                  <Box sx={{ marginTop: "30px", textAlign: "center" }}>
+                    <Button
+                      sx={{ marginBottom: "10px" }}
+                      onClick={nextPage}
+                      variant="outlined"
+                    >
+                      <ArrowForwardIosIcon />Next
+                    </Button>
+                  </Box>
+                </>
+              )}
+            </Grid>
+          </Grid>
         </Container>
       )}
 
