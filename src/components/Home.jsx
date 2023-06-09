@@ -199,15 +199,7 @@ function Home() {
             {showContent === "search" && (
               <>
                 {contentList.map((obj, index) => (
-                  <Grid
-                    key={index}
-                    item
-                    lg={4}
-                    xl={3}
-                    sm={6}
-                    xs={12}
-                    sx={{ display: "flex", justifyContent: { xs: "center" } }}
-                  >
+                  <Grid key={index} item lg={4} xl={3} sm={6} xs={12}>
                     {/* Render specific card according to results.media_type returned from content list */}
                     {obj.media_type === "tv" && <TvMediaCard tvshow={obj} />}
                     {obj.media_type === "movie" && (
