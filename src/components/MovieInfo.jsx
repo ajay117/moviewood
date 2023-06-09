@@ -83,32 +83,36 @@ function MovieInfo() {
 
         <h3 style={{ textAlign: "center" }}>Related videos:</h3>
         {videos.length > 0 ? (
-        <div className="grid-container">
-          {videos.map(
-            (item, index) =>
-              index < 5 && (
-                <div
-                  style={{ border: "1px solid black", padding: "20px" }}
-                  key={item.id}
-                  className="grid-container_child"
-                >
-                  <iframe
-                    src={`https://www.youtube.com/embed/${item.key}`}
-                  ></iframe>
-                  <p>{item.name}</p>
-                  <Divider sx={{ borderWidth: 2 }} />
-                </div>
-              )
-          )}
-        </div>)  : <p style={{paddingBottom: "20px"}} className="text-center">No Videos</p>
-        }
+          <Grid container spacing={{ xs: 2, lg: 4 }}>
+            {videos.map(
+              (item, index) =>
+                index < 5 && (
+                  <Grid key={item.id} item xs={12} sm={6} lg={4}>
+                    <div className="iframe-container">
+                      <iframe
+                        src={`https://www.youtube.com/embed/${item.key}`}
+                        className="responsive-iframe"
+                      ></iframe>
+                    </div>
+                    <p>{item.name}</p>
+                    <Divider sx={{ borderWidth: 2 }} />
+                  </Grid>
+                )
+            )}
+          </Grid>
+        ) : (
+          <p style={{ paddingBottom: "20px" }} className="text-center">
+            No Videos
+          </p>
+        )}
 
         <h3 style={{ textAlign: "center" }}>Cast:</h3>
         <div className="grid-container">
           {cast.map((item, index) => (
             <div key={item.id}>
-              <div style={{textAlign: "center"}}>
-                <img style={{width: "400px"}}
+              <div style={{ textAlign: "center" }}>
+                <img
+                  style={{ width: "400px" }}
                   src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
                   alt=""
                 />
