@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import { Divider } from "@mui/material";
+import { Button, Divider } from "@mui/material";
 import Header from "./Header";
 import Img from "./../assets/blank_img.webp";
+import { Link } from "react-router-dom";
 
 function TvInfo() {
   let { id } = useParams();
@@ -76,27 +77,33 @@ function TvInfo() {
         </div>
 
         <h3 style={{ textAlign: "center" }}>Related videos:</h3>
-        <div className="grid-container">
-          {videos.map(
-            (item, index) =>
-              index < 5 && (
-                <div
-                  style={{ border: "1px solid black", padding: "20px" }}
-                  key={item.id}
-                  className="grid-container_child"
-                >
-                  <iframe
-                    src={`https://www.youtube.com/embed/${item.key}`}
-                  ></iframe>
-                  <p>{item.name}</p>
-                  <Divider sx={{ borderWidth: 2 }} />
-                </div>
-              )
-          )}
-        </div>
+        {videos.length > 0 ? (
+          <div className="grid-container">
+            {videos.map(
+              (item, index) =>
+                index < 5 && (
+                  <div
+                    style={{ border: "1px solid black", padding: "20px" }}
+                    key={item.id}
+                    className="grid-container_child"
+                  >
+                    <iframe
+                      src={`https://www.youtube.com/embed/${item.key}`}
+                    ></iframe>
+                    <p>{item.name}</p>
+                    <Divider sx={{ borderWidth: 2 }} />
+                  </div>
+                )
+            )}
+          </div>
+        ) : (
+          <p className="text-center" style={{ paddingBottom: "20px" }}>
+            No Videos
+          </p>
+        )}
 
         <h3 style={{ textAlign: "center" }}>Cast:</h3>
-        <div className="grid-container">
+        <div className="grid-container text-center">
           {cast.map((item, index) => (
             <div
               key={item.id}
@@ -119,6 +126,14 @@ function TvInfo() {
               <p>
                 <b>Character:</b> {item.character}
               </p>
+
+              <Link to={`/people/${item.id}`}>
+                <div>
+                  <Button sx={{ width: "100%" }} variant="contained">
+                    See More
+                  </Button>
+                </div>
+              </Link>
             </div>
           ))}
         </div>
