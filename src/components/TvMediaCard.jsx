@@ -18,10 +18,9 @@ export default function TvMediaCard({ tvshow }) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card>
       <CardMedia
-        sx={{ height: 140 }}
-        image={imageUrl}
+        sx={{height: 400}}
         title={tvshow.original_name + " image."}
       />
       <CardContent>
@@ -53,7 +52,7 @@ export default function TvMediaCard({ tvshow }) {
       </CardContent>
       <Link to={`/tvshow/${tvshow.id}`}>
         <div>
-          <Button sx={{ width: "100%"}} variant="contained">
+          <Button sx={{ width: "100%" }} variant="contained">
             See More
           </Button>
         </div>

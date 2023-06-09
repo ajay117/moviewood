@@ -17,9 +17,9 @@ export default function MoviesMediaCard({ movie }) {
     setFullContent(true);
   };
   return (
-    <Card sx={{ maxWidth: 345}}>
+    <Card>
       <CardMedia
-        sx={{ height: 140 }}
+        sx={{ height: 400 }}
         image={imageUrl}
         title={movie.title + " image."}
       />
@@ -52,7 +52,7 @@ export default function MoviesMediaCard({ movie }) {
       </CardContent>
       <Link to={`/movie/${movie.id}`}>
         <div>
-          <Button sx={{ width: "100%"}} variant="contained">
+          <Button sx={{ width: "100%" }} variant="contained">
             See More
           </Button>
         </div>

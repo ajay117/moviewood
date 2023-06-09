@@ -9,9 +9,9 @@ import { Button } from "@mui/material";
 export default function PeoplesMediaCard({ people }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500" + people.profile_path;
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card>
       <CardMedia
-        sx={{ height: 200 }}
+        sx={{ height: 400 }}
         image={imageUrl}
         title={people.name + " image."}
       />
