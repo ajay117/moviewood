@@ -107,33 +107,48 @@ function MovieInfo() {
         )}
 
         <h3 style={{ textAlign: "center" }}>Cast:</h3>
-        <div className="grid-container">
+        <Grid container spacing={{ xs: 2, lg: 4 }}>
           {cast.map((item, index) => (
-            <div key={item.id}>
-              <div style={{ textAlign: "center" }}>
-                <img
-                  style={{ width: "400px" }}
-                  src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
-                  alt=""
-                />
-              </div>
-              <p>
-                <b>Original name:</b> {item.name}
-              </p>
-              <p>
-                <b>Character:</b> {item.character}
-              </p>
-
-              <Link to={`/people/${item.id}`} target="_blank">
-                <div>
-                  <Button sx={{ width: "100%" }} variant="contained">
-                    See More
-                  </Button>
+            <Grid key={item.id} item xs={12} sm={6} lg={4}>
+              <div
+                style={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <div style={{ flex: 1 }}>
+                  <div style={{ textAlign: "center", height: "100%" }}>
+                    <img
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                      src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
+                      alt=""
+                    />
+                  </div>
                 </div>
-              </Link>
-            </div>
+                <div style={{ flex: "0 0 auto", marginTop: "auto" }}>
+                  <p>
+                    <b>Original name:</b> {item.name}
+                  </p>
+                  <p>
+                    <b>Character:</b> {item.character}
+                  </p>
+                  <Link to={`/people/${item.id}`} target="_blank">
+                    <div>
+                      <Button sx={{ width: "100%" }} variant="contained">
+                        See More
+                      </Button>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </Grid>
           ))}
-        </div>
+        </Grid>
       </Container>
     </div>
   );
