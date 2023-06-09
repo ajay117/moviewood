@@ -61,20 +61,13 @@ function Home() {
     if (link !== showContent) {
       setContentList([]);
     }
-    // if (link === "person")
     setShowContent(link);
     setValue(0);
-    // setPage(1);
-    // previousPageStateRef.current = 1;
   };
-
-  // const changeTab = (event) => {
-  // };
 
   const handleTabChange = (event, newValue) => {
     setValue(newValue);
     setTab(event.target.innerText.toLowerCase());
-    // changeTab(event);
   };
 
   const nextPage = () => {
@@ -178,15 +171,7 @@ function Home() {
             {showContent === "movie" && (
               <>
                 {contentList.map((movie, index) => (
-                  <Grid
-                    key={index}
-                    item
-                    lg={4}
-                    xl={3}
-                    sm={6}
-                    xs={12}
-                    sx={{ display: "flex", justifyContent: { xs: "center" } }}
-                  >
+                  <Grid key={index} item lg={4} xl={3} sm={6} xs={12}>
                     <MoviesMediaCard movie={movie} />
                   </Grid>
                 ))}
@@ -195,15 +180,7 @@ function Home() {
             {showContent === "person" && (
               <>
                 {contentList.map((people, index) => (
-                  <Grid
-                    key={index}
-                    item
-                    lg={4}
-                    xl={3}
-                    sm={6}
-                    xs={12}
-                    sx={{ display: "flex", justifyContent: { xs: "center" } }}
-                  >
+                  <Grid key={index} item lg={4} xl={3} sm={6} xs={12}>
                     <PeoplesMediaCard people={people} />
                   </Grid>
                 ))}
@@ -212,15 +189,7 @@ function Home() {
             {showContent === "tv" && (
               <>
                 {contentList.map((tvshow, index) => (
-                  <Grid
-                    key={index}
-                    item
-                    lg={4}
-                    xl={3}
-                    sm={6}
-                    xs={12}
-                    sx={{ display: "flex", justifyContent: { xs: "center" } }}
-                  >
+                  <Grid key={index} item lg={4} xl={3} sm={6} xs={12}>
                     <TvMediaCard tvshow={tvshow} />
                   </Grid>
                 ))}
@@ -253,7 +222,7 @@ function Home() {
             )}
           </Grid>
 
-          <Grid sx={{justifyContent: "center"}} container spacing={2}>
+          <Grid sx={{ justifyContent: "center" }} container spacing={2}>
             <Grid item>
               {page > 1 && (
                 <>
@@ -263,7 +232,8 @@ function Home() {
                       onClick={prevPage}
                       variant="outlined"
                     >
-                      <ArrowBackIosNewIcon />Previous
+                      <ArrowBackIosNewIcon />
+                      Previous
                     </Button>
                   </Box>
                 </>
@@ -278,7 +248,8 @@ function Home() {
                       onClick={nextPage}
                       variant="outlined"
                     >
-                      <ArrowForwardIosIcon />Next
+                      <ArrowForwardIosIcon />
+                      Next
                     </Button>
                   </Box>
                 </>
