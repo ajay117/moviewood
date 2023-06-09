@@ -3,6 +3,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 
 export default function PeoplesMediaCard({ people }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500" + people.profile_path;
@@ -23,7 +25,14 @@ export default function PeoplesMediaCard({ people }) {
           </span>
           {people.known_for_department}
         </Typography>
-      </CardContent>
+      </CardContent>{" "}
+      <Link to={`/people/${people.id}`}>
+        <div>
+          <Button sx={{ width: "100%" }} variant="contained">
+            See More
+          </Button>
+        </div>
+      </Link>
     </Card>
   );
 }
