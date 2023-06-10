@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import logo from "../assets/logo.jpeg";
+import Image from "./../assets/blank_img.webp"
+
 
 export default function MenuBar({ handleClick }) {
   return (

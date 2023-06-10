@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { Button, Divider } from "@mui/material";
 import Header from "./Header";
-import Img from "./../assets/blank_img.webp";
+import Image from "./../assets/blank_img.webp";
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
 
@@ -17,7 +17,6 @@ function TvInfo() {
   const linkStyle = {
     textDecoration: "none",
   };
-
 
   const controller = new AbortController();
   const signal = controller.signal;
@@ -126,7 +125,11 @@ function TvInfo() {
                         height: "100%",
                         objectFit: "cover",
                       }}
-                      src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
+                      src={
+                        item.profile_path
+                          ? `https://image.tmdb.org/t/p/w500/${item.profile_path}`
+                          : Image
+                      }
                       alt=""
                     />
                   </div>

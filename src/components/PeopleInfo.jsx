@@ -11,6 +11,7 @@ import Header from "./Header";
 import formatNumber from "../modules/formatNumber";
 import Footer from "./Footer";
 
+
 function PeopleInfo() {
   let { id } = useParams();
   const [personDetail, setPersonDetail] = useState([]);

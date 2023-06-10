@@ -10,6 +10,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Header from "./Header";
 import formatNumber from "../modules/formatNumber";
 import Footer from "./Footer";
+import Image from "./../assets/blank_img.webp"
 
 function MovieInfo() {
   let { id } = useParams();
@@ -129,7 +130,7 @@ function MovieInfo() {
                         height: "100%",
                         objectFit: "cover",
                       }}
-                      src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
+                      src={item.profile_path ? `https://image.tmdb.org/t/p/w500/${item.profile_path}` : Image}
                       alt=""
                     />
                   </div>
