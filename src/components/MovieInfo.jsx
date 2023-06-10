@@ -20,6 +20,9 @@ function MovieInfo() {
   const signal = controller.signal;
   const videoLink = "https://www.youtube.com/watch?v=";
   let budget = movieDetails.budget || 0;
+  const linkStyle = {
+    textDecoration: "none",
+  };
 
   const options = {
     method: "GET",
@@ -139,10 +142,13 @@ function MovieInfo() {
                     <b>Character:</b> {item.character}
                   </p>
 
-                  <Link to={`/people/${item.id}`}>
+                  <Link to={`/people/${item.id}`} style={linkStyle}>
                     <div>
-                      <Button sx={{ width: "100%" }} variant="contained">
-                        See More
+                      <Button
+                        sx={{ width: "100%", textDecoration: "none" }}
+                        variant="contained"
+                      >
+                        More Info
                       </Button>
                     </div>
                   </Link>

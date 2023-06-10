@@ -14,6 +14,10 @@ function TvInfo() {
   const [tvShows, setTvShows] = useState([]);
   const [videos, setTvVideos] = useState([]);
   const [cast, setCast] = useState([]);
+  const linkStyle = {
+    textDecoration: "none",
+  };
+
 
   const controller = new AbortController();
   const signal = controller.signal;
@@ -104,40 +108,52 @@ function TvInfo() {
         )}
 
         <h3 style={{ textAlign: "center" }}>Cast:</h3>
-        <div className="grid-container text-center">
+        <Grid container spacing={{ xs: 2, lg: 4 }}>
           {cast.map((item, index) => (
-            <div
-              key={item.id}
-              style={{ marginLeft: "10px", marginRight: "10px" }}
-            >
-              <div>
-                <img
-                  style={{ width: "300px" }}
-                  src={
-                    item.profile_path
-                      ? `https://image.tmdb.org/t/p/w500/${item.profile_path}`
-                      : Img
-                  }
-                  alt=""
-                />
-              </div>
-              <p>
-                <b>Original name:</b> {item.name}
-              </p>
-              <p>
-                <b>Character:</b> {item.character}
-              </p>
-
-              <Link to={`/people/${item.id}`}>
-                <div>
-                  <Button sx={{ width: "100%" }} variant="contained">
-                    See More
-                  </Button>
+            <Grid key={item.id} item xs={12} sm={6} lg={4}>
+              <div
+                style={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <div style={{ flex: 1 }}>
+                  <div style={{ textAlign: "center", height: "100%" }}>
+                    <img
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                      src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
+                      alt=""
+                    />
+                  </div>
                 </div>
-              </Link>
-            </div>
+                <div style={{ flex: "0 0 auto", marginTop: "auto" }}>
+                  <p>
+                    <b>Original name:</b> {item.name}
+                  </p>
+                  <p>
+                    <b>Character:</b> {item.character}
+                  </p>
+
+                  <Link to={`/people/${item.id}`} style={linkStyle}>
+                    <div>
+                      <Button
+                        sx={{ width: "100%", textDecoration: "none" }}
+                        variant="contained"
+                      >
+                        More Info
+                      </Button>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </Grid>
           ))}
-        </div>
+        </Grid>
       </Container>
       <Footer />
     </div>

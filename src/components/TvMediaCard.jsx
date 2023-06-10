@@ -17,10 +17,14 @@ export default function TvMediaCard({ tvshow }) {
     setFullContent(true);
   };
 
+  const linkStyle = {
+    textDecoration: "none",
+  };
+
   return (
     <Card>
       <CardMedia
-        sx={{height: 400}}
+        sx={{ height: 400 }}
         image={imageUrl}
         title={tvshow.original_name + " image."}
       />
@@ -51,7 +55,8 @@ export default function TvMediaCard({ tvshow }) {
           {tvshow.first_air_date}
         </Typography>
       </CardContent>
-      <Link to={`/tvshow/${tvshow.id}`}>
+
+      <Link to={`/tvshow/${tvshow.id}`} style={linkStyle}>
         <div>
           <Button sx={{ width: "100%" }} variant="contained">
             See More
