@@ -14,17 +14,29 @@ export default function MenuBar({ handleClick }) {
         padding: "0 20px",
       }}
     >
+      <Box sx={{ width: { xs: "150px", lg: "180px" } }}>
+        <img className="logo" src={logo} alt="" />
+      </Box>
       <div>
-        <img className="logo"  src={logo} alt=""></img>
-      </div>
-      <div>
-        <Button onClick={handleClick} variant="text">
+        <Button
+          onClick={handleClick}
+          variant="text"
+          sx={{ fontSize: { xs: "12px", sm: "15px" } }}
+        >
           movie
         </Button>
-        <Button onClick={handleClick} variant="text">
+        <Button
+          onClick={handleClick}
+          variant="text"
+          sx={{ fontSize: { xs: "12px", sm: "15px" } }}
+        >
           tv
         </Button>
-        <Button onClick={handleClick} variant="text">
+        <Button
+          onClick={handleClick}
+          variant="text"
+          sx={{ fontSize: { xs: "12px", sm: "15px" } }}
+        >
           person
         </Button>
       </div>

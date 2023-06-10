@@ -15,11 +15,10 @@ function Header() {
         padding: "0 20px",
       }}
     >
-      <div>
-        <img className="logo" src={logo} alt=""></img>
-      </div>
-
-      <Button variant="text">
+      <Box sx={{ width: { xs: "150px", lg: "180px" } }}>
+        <img className="logo" src={logo} alt="" />
+      </Box>
+      <Button variant="text" sx={{ fontSize: { xs: "12px", sm: "15px" } }}>
         <Link to="/" style={{ display: "flex" }}>
           <HomeIcon style={{ marginRight: "1px" }} />
           Go Home
