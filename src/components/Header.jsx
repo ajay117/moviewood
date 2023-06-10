@@ -17,14 +17,16 @@ function Header() {
       }}
     >
       <Box sx={{ width: { xs: "150px", lg: "180px" } }}>
-        <img className="logo" src={logo} alt="" />
+        <a href="/">
+          <img className="logo" src={logo} alt="" />
+        </a>
       </Box>
 
       <Tooltip title="Go back to home page" arrow>
         <Button variant="text" sx={{ fontSize: { xs: "12px", sm: "15px" } }}>
-          <Link to="/" style={{ display: "flex" }}>
+          <Link to="/" style={{ display: "flex",alignItems: "center" ,textDecoration: "none" }}>
             <HomeIcon style={{ marginRight: "1px" }} />
-            Go Home
+            Homepage
           </Link>
         </Button>
       </Tooltip>
