@@ -138,7 +138,8 @@ function MovieInfo() {
                   <p>
                     <b>Character:</b> {item.character}
                   </p>
-                  <Link to={`/people/${item.id}`} target="_blank">
+
+                  <Link to={`/people/${item.id}`}>
                     <div>
                       <Button sx={{ width: "100%" }} variant="contained">
                         See More
