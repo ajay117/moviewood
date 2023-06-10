@@ -8,6 +8,9 @@ import { Button } from "@mui/material";
 
 export default function PeoplesMediaCard({ people }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500" + people.profile_path;
+  const linkStyle = {
+    textDecoration: "none"
+  }
   return (
     <Card>
       <CardMedia
@@ -26,10 +29,10 @@ export default function PeoplesMediaCard({ people }) {
           {people.known_for_department}
         </Typography>
       </CardContent>{" "}
-      <Link to={`/people/${people.id}`}>
+      <Link to={`/people/${people.id}`} style={linkStyle}>
         <div>
           <Button sx={{ width: "100%" }} variant="contained">
-            See More
+            More Info
           </Button>
         </div>
       </Link>

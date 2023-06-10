@@ -47,13 +47,13 @@ function PeopleInfo() {
   if (personDetail.images && personDetail.images.profiles.length > 0) {
     images = personDetail.images.profiles.map((obj, index) => {
       return (
-        <div style={{ textAlign: "center", paddingBottom: "20px" }}>
+        <Grid item xs={12} sm={6} lg={4} xl={3}>
           <img
             style={{ maxWidth: "300px", maxHeight: "400px" }}
             src={`https://image.tmdb.org/t/p/w500/${obj.file_path}`}
             alt=""
           />
-        </div>
+        </Grid>
       );
     });
   }
@@ -115,7 +115,7 @@ function PeopleInfo() {
           </div>
         </div>
         <h3 style={{ textAlign: "center" }}>Related Images:</h3>
-        {personDetail.images && <div className="grid-container">{images}</div>}
+        {personDetail.images && <Grid container spacing={{ xs: 2, lg: 4 }}>{images}</Grid>}
       </Container>
       <Footer />
     </div>
