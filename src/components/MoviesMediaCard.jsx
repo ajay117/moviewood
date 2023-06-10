@@ -16,6 +16,10 @@ export default function MoviesMediaCard({ movie }) {
     event.preventDefault();
     setFullContent(true);
   };
+
+  const linkStyle = {
+    textDecoration: "none",
+  };
   return (
     <Card>
       <CardMedia
@@ -50,7 +54,7 @@ export default function MoviesMediaCard({ movie }) {
           {movie.release_date}
         </Typography>
       </CardContent>
-      <Link to={`/movie/${movie.id}`}>
+      <Link to={`/movie/${movie.id}`} style={linkStyle}>
         <div>
           <Button sx={{ width: "100%" }} variant="contained">
             See More
