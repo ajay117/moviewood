@@ -21,6 +21,7 @@ export default function TvMediaCard({ tvshow }) {
     <Card>
       <CardMedia
         sx={{height: 400}}
+        image={imageUrl}
         title={tvshow.original_name + " image."}
       />
       <CardContent>
