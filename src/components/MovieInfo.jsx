@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import HomeIcon from "@mui/icons-material/Home";
 import Header from "./Header";
 import formatNumber from "../modules/formatNumber";
+import Footer from "./Footer";
 
 function MovieInfo() {
   let { id } = useParams();
@@ -150,6 +151,7 @@ function MovieInfo() {
           ))}
         </Grid>
       </Container>
+      <Footer />
     </div>
   );
 }

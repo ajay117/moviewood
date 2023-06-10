@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import HomeIcon from "@mui/icons-material/Home";
 import Header from "./Header";
 import formatNumber from "../modules/formatNumber";
+import Footer from "./Footer";
 
 function PeopleInfo() {
   let { id } = useParams();
@@ -46,8 +47,9 @@ function PeopleInfo() {
   if (personDetail.images && personDetail.images.profiles.length > 0) {
     images = personDetail.images.profiles.map((obj, index) => {
       return (
-        <div style={{textAlign: "center", paddingBottom: "20px"}}>
-          <img style={{maxWidth: "300px", maxHeight: "400px"}}
+        <div style={{ textAlign: "center", paddingBottom: "20px" }}>
+          <img
+            style={{ maxWidth: "300px", maxHeight: "400px" }}
             src={`https://image.tmdb.org/t/p/w500/${obj.file_path}`}
             alt=""
           />
@@ -113,12 +115,9 @@ function PeopleInfo() {
           </div>
         </div>
         <h3 style={{ textAlign: "center" }}>Related Images:</h3>
-        {personDetail.images && (
-          <div className="grid-container">
-            {images}
-          </div>
-        )}
+        {personDetail.images && <div className="grid-container">{images}</div>}
       </Container>
+      <Footer />
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { Button, Divider } from "@mui/material";
 import Header from "./Header";
 import Img from "./../assets/blank_img.webp";
 import { Link } from "react-router-dom";
+import Footer from "./Footer";
 
 function TvInfo() {
   let { id } = useParams();
@@ -138,6 +139,7 @@ function TvInfo() {
           ))}
         </div>
       </Container>
+      <Footer />
     </div>
   );
 }
