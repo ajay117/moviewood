@@ -23,7 +23,7 @@ function Header() {
       </Box>
 
       <Tooltip title="Go back to home page" arrow>
-        <Button variant="text" sx={{ fontSize: { xs: "12px", sm: "15px" } }}>
+        <Button variant="text" sx={{ fontSize: { xs: "14px", sm: "15px" } }}>
           <Link to="/" style={{ display: "flex",alignItems: "center" ,textDecoration: "none" }}>
             <HomeIcon style={{ marginRight: "1px" }} />
             Homepage
