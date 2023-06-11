@@ -7,6 +7,7 @@ import { useState } from "react";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
+import Rating from "@mui/material/Rating";
 
 export default function TvMediaCard({ tvshow }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500" + tvshow.poster_path;
@@ -53,13 +54,24 @@ export default function TvMediaCard({ tvshow }) {
             Release Date:
           </span>{" "}
           {tvshow.first_air_date}
-        </Typography>
+        </Typography>{" "}
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <p>
+            <b>{""}</b>
+          </p>
+          <Rating
+            name="rating"
+            value={tvshow.vote_average / 2}
+            precision={0.1}
+            readOnly
+          />
+        </div>
       </CardContent>
 
       <Link to={`/tvshow/${tvshow.id}`} style={linkStyle}>
         <div>
           <Button sx={{ width: "100%" }} variant="contained">
-            See More
+            More Info
           </Button>
         </div>
       </Link>

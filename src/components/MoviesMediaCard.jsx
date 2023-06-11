@@ -7,6 +7,7 @@ import { useState } from "react";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
+import Rating from "@mui/material/Rating";
 
 export default function MoviesMediaCard({ movie }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
@@ -53,11 +54,22 @@ export default function MoviesMediaCard({ movie }) {
           </span>{" "}
           {movie.release_date}
         </Typography>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <p>
+            <b>{""}</b>
+          </p>
+          <Rating
+            name="rating"
+            value={movie.vote_average / 2}
+            precision={0.1}
+            readOnly
+          />
+        </div>
       </CardContent>
       <Link to={`/movie/${movie.id}`} style={linkStyle}>
         <div>
           <Button sx={{ width: "100%" }} variant="contained">
-            See More
+            More Info
           </Button>
         </div>
       </Link>
