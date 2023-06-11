@@ -75,12 +75,12 @@ function PeopleInfo() {
                 "https://image.tmdb.org/t/p/w500" + personDetail.profile_path
               }
               alt=""
-              style={{ maxHeight: "300px" }}
+              style={{ maxHeight: "300px", marginBottom: "10px" }}
             />
           </div>
 
           <div>
-            <p>{personDetail.biography}</p>
+            <p style={{marginTop: "0"}}>{personDetail.biography}</p>
             {personDetail.homepage ? (
               <p>
                 <b>Homepage:</b>{" "}

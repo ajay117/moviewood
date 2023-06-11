@@ -61,12 +61,12 @@ function MovieInfo() {
             <img
               src={"https://image.tmdb.org/t/p/w500" + movieDetails.poster_path}
               alt=""
-              style={{ maxHeight: "300px" }}
+              style={{ maxHeight: "300px", marginBottom: "10px" }}
             />
           </div>
 
           <div>
-            <p>{movieDetails.overview}</p>
+            <p style={{marginTop: "0px"}}>{movieDetails.overview}</p>
             <p>
               <b>Homepage:</b>{" "}
               <a href={movieDetails.homepage} target="_blank">
