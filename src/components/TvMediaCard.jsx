@@ -13,10 +13,10 @@ export default function TvMediaCard({ tvshow }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500" + tvshow.poster_path;
   const [fullContent, setFullContent] = useState(false);
 
-  const handleClick = (event) => {
-    event.preventDefault();
-    setFullContent(true);
-  };
+  // const handleClick = (event) => {
+  //   event.preventDefault();
+  //   setFullContent(true);
+  // };
 
   const linkStyle = {
     textDecoration: "none",
@@ -40,9 +40,9 @@ export default function TvMediaCard({ tvshow }) {
             ) : (
               <span>
                 {tvshow.overview.slice(0, 99)}{" "}
-                <a href="#" onClick={handleClick}>
-                  <ArrowCircleRightIcon sx={{ verticalAlign: "middle" }} />
-                </a>
+                <Link to={`/tvshow/${tvshow.id}`} style={linkStyle}>
+                  More Info
+                </Link>
               </span>
             )
           ) : (

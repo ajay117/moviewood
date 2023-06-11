@@ -13,10 +13,10 @@ export default function MoviesMediaCard({ movie }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
   const [fullContent, setFullContent] = useState(false);
 
-  const handleClick = (event) => {
-    event.preventDefault();
-    setFullContent(true);
-  };
+  // const handleClick = (event) => {
+  //   event.preventDefault();
+  //   setFullContent(true);
+  // };
 
   const linkStyle = {
     textDecoration: "none",
@@ -39,9 +39,9 @@ export default function MoviesMediaCard({ movie }) {
             ) : (
               <span>
                 {movie.overview.slice(0, 99)}{" "}
-                <a href="#" onClick={handleClick}>
-                  <ArrowCircleRightIcon sx={{ verticalAlign: "middle" }} />
-                </a>
+                <Link to={`/movie/${movie.id}`} style={linkStyle}>
+                  ...Read More
+                </Link>
               </span>
             )
           ) : (
