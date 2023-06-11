@@ -10,7 +10,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Header from "./Header";
 import formatNumber from "../modules/formatNumber";
 import Footer from "./Footer";
-import Image from "./../assets/blank_img.webp"
+import Image from "./../assets/blank_img.webp";
 
 function MovieInfo() {
   let { id } = useParams();
@@ -80,6 +80,7 @@ function MovieInfo() {
             <p>
               <b>Release Date:-</b> {movieDetails.release_date}
             </p>
+
             <p>
               <b>Rating:</b> {movieDetails.vote_average}
             </p>
@@ -130,7 +131,11 @@ function MovieInfo() {
                         height: "100%",
                         objectFit: "cover",
                       }}
-                      src={item.profile_path ? `https://image.tmdb.org/t/p/w500/${item.profile_path}` : Image}
+                      src={
+                        item.profile_path
+                          ? `https://image.tmdb.org/t/p/w500/${item.profile_path}`
+                          : Image
+                      }
                       alt=""
                     />
                   </div>

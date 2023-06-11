@@ -36,7 +36,7 @@ function TvInfo() {
     )
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         setTvShows(response);
         setTvVideos(response.videos.results);
         setCast(response.credits.cast);
