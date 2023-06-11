@@ -58,12 +58,12 @@ function TvInfo() {
             <img
               src={"https://image.tmdb.org/t/p/w500" + tvShows.poster_path}
               alt=""
-              style={{ maxHeight: "300px" }}
+              style={{ maxHeight: "300px", marginBottom: "10px" }}
             />
           </div>
 
           <div>
-            <p>{tvShows.overview}</p>
+            <p style={{marginTop: "0px"}}>{tvShows.overview}</p>
             <p>
               <b>Homepage:</b>{" "}
               <a href={tvShows.homepage} target="_blank">
@@ -82,24 +82,23 @@ function TvInfo() {
 
         <h3 style={{ textAlign: "center" }}>Related videos:</h3>
         {videos.length > 0 ? (
-          <div className="grid-container">
+          <Grid container spacing={{ xs: 2, lg: 4 }}>
             {videos.map(
               (item, index) =>
                 index < 5 && (
-                  <div
-                    style={{ border: "1px solid black", padding: "20px" }}
-                    key={item.id}
-                    className="grid-container_child"
-                  >
-                    <iframe
-                      src={`https://www.youtube.com/embed/${item.key}`}
-                    ></iframe>
+                  <Grid key={item.id} item xs={12} sm={6} lg={4}>
+                    <div className="iframe-container">
+                      <iframe
+                        src={`https://www.youtube.com/embed/${item.key}`}
+                        className="responsive-iframe"
+                      ></iframe>
+                    </div>
                     <p>{item.name}</p>
                     <Divider sx={{ borderWidth: 2 }} />
-                  </div>
+                  </Grid>
                 )
             )}
-          </div>
+          </Grid>
         ) : (
           <p className="text-center" style={{ paddingBottom: "20px" }}>
             No Videos
