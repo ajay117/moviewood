@@ -10,6 +10,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Header from "./Header";
 import formatNumber from "../modules/formatNumber";
 import Footer from "./Footer";
+import calculateAge from "../modules/calculateAge";
 
 
 function PeopleInfo() {
@@ -48,7 +49,7 @@ function PeopleInfo() {
   if (personDetail.images && personDetail.images.profiles.length > 0) {
     images = personDetail.images.profiles.map((obj, index) => {
       return (
-        <Grid item xs={12} sm={6} lg={4} xl={3}>
+        <Grid item xs={12} sm={6} lg={4} xl={3} key={obj.id}>
           <img
             style={{ maxWidth: "300px", maxHeight: "400px" }}
             src={`https://image.tmdb.org/t/p/w500/${obj.file_path}`}
@@ -93,11 +94,11 @@ function PeopleInfo() {
             )}
 
             <p>
-              <b>Born:-</b> {personDetail.birthday}
+              <b>Born:-</b> {personDetail.birthday} ({!personDetail.deathday && `age ${calculateAge(personDetail.birthday)}`})
             </p>
             {personDetail.deathday ? (
               <p>
-                <b>Died:-</b> {personDetail.deathday}
+                <b>Died:-</b> {personDetail.deathday} ({personDetail.deathday && `aged ${calculateAge(personDetail.birthday, personDetail.deathday)}`})
               </p>
             ) : (
               ""
