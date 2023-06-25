@@ -30,22 +30,17 @@ export default function MoviesMediaCard({ movie }) {
       />
       <CardContent>
         <Typography gutterBottom variant="h6" component="h2">
-          {movie.title}
+          {movie.title.length > 15 ? `${movie.title.slice(0,14)}...` : movie.title}
         </Typography>
         <Typography variant="body2" color="p">
-          {!fullContent ? (
-            movie.overview.length < 100 ? (
-              movie.overview
+         {movie.overview.length < 25 ? (
+            movie.overview.length < 1 ? (
+              <p><b>No overview provided</b></p>
             ) : (
-              <span>
-                {movie.overview.slice(0, 99)}{" "}
-                <Link to={`/movie/${movie.id}`} style={linkStyle}>
-                  ...Read More
-                </Link>
-              </span>
+              movie.overview
             )
           ) : (
-            movie.overview
+            `${movie.overview.slice(0, 24)}...`
           )}
         </Typography>
         <Typography mt={2} variant="body2" color="p">

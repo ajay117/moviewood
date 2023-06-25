@@ -31,22 +31,20 @@ export default function TvMediaCard({ tvshow }) {
       />
       <CardContent>
         <Typography gutterBottom variant="h6" component="h2">
-          {tvshow.original_name}
+          {/* {tvshow.original_name} */}
+          {tvshow.original_name.length > 15
+            ? `${tvshow.original_name.slice(0, 14)}...`
+            : tvshow.original_name}
         </Typography>
         <Typography variant="body2" color="p">
-          {!fullContent ? (
-            tvshow.overview.length < 100 ? (
-              tvshow.overview
+          {tvshow.overview.length < 25 ? (
+            tvshow.overview.length < 1 ? (
+              <p><b>No overview provided</b></p>
             ) : (
-              <span>
-                {tvshow.overview.slice(0, 99)}{" "}
-                <Link to={`/tvshow/${tvshow.id}`} style={linkStyle}>
-                  More Info
-                </Link>
-              </span>
+              tvshow.overview
             )
           ) : (
-            tvshow.overview
+            `${tvshow.overview.slice(0, 24)}...`
           )}
         </Typography>
         <Typography mt={2} variant="body2" color="p">
