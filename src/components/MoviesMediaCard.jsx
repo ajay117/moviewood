@@ -11,12 +11,6 @@ import Rating from "@mui/material/Rating";
 
 export default function MoviesMediaCard({ movie }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
-  const [fullContent, setFullContent] = useState(false);
-
-  // const handleClick = (event) => {
-  //   event.preventDefault();
-  //   setFullContent(true);
-  // };
 
   const linkStyle = {
     textDecoration: "none",
@@ -30,12 +24,16 @@ export default function MoviesMediaCard({ movie }) {
       />
       <CardContent>
         <Typography gutterBottom variant="h6" component="h2">
-          {movie.title.length > 15 ? `${movie.title.slice(0,14)}...` : movie.title}
+          {movie.title.length > 15
+            ? `${movie.title.slice(0, 14)}...`
+            : movie.title}
         </Typography>
         <Typography variant="body2" color="p">
-         {movie.overview.length < 25 ? (
+          {movie.overview.length < 25 ? (
             movie.overview.length < 1 ? (
-              <p><b>No overview provided</b></p>
+              <p>
+                <b>No overview provided</b>
+              </p>
             ) : (
               movie.overview
             )

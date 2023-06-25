@@ -11,12 +11,6 @@ import Rating from "@mui/material/Rating";
 
 export default function TvMediaCard({ tvshow }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500" + tvshow.poster_path;
-  const [fullContent, setFullContent] = useState(false);
-
-  // const handleClick = (event) => {
-  //   event.preventDefault();
-  //   setFullContent(true);
-  // };
 
   const linkStyle = {
     textDecoration: "none",
@@ -39,7 +33,9 @@ export default function TvMediaCard({ tvshow }) {
         <Typography variant="body2" color="p">
           {tvshow.overview.length < 25 ? (
             tvshow.overview.length < 1 ? (
-              <p><b>No overview provided</b></p>
+              <p>
+                <b>No overview provided</b>
+              </p>
             ) : (
               tvshow.overview
             )
