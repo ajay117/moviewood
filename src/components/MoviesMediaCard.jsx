@@ -28,18 +28,8 @@ export default function MoviesMediaCard({ movie }) {
             ? `${movie.title.slice(0, 14)}...`
             : movie.title}
         </Typography>
-        <Typography variant="body2" color="p">
-          {movie.overview.length < 25 ? (
-            movie.overview.length < 1 ? (
-              <p>
-                <b>No overview provided</b>
-              </p>
-            ) : (
-              movie.overview
-            )
-          ) : (
-            `${movie.overview.slice(0, 24)}...`
-          )}
+        <Typography className="para_scroll" variant="body2" color="p">
+          {movie.overview.length < 1 ? <p>No Description</p> : movie.overview}
         </Typography>
         <Typography mt={2} variant="body2" color="p">
           <span style={{ fontWeight: "700", marginRight: "5px" }}>

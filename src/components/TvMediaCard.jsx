@@ -30,18 +30,8 @@ export default function TvMediaCard({ tvshow }) {
             ? `${tvshow.original_name.slice(0, 14)}...`
             : tvshow.original_name}
         </Typography>
-        <Typography variant="body2" color="p">
-          {tvshow.overview.length < 25 ? (
-            tvshow.overview.length < 1 ? (
-              <p>
-                <b>No overview provided</b>
-              </p>
-            ) : (
-              tvshow.overview
-            )
-          ) : (
-            `${tvshow.overview.slice(0, 24)}...`
-          )}
+        <Typography className="para_scroll" variant="body2" color="p">
+          {tvshow.overview.length < 1 ? <p>No Description</p> : tvshow.overview}
         </Typography>
         <Typography mt={2} variant="body2" color="p">
           <span style={{ fontWeight: "700", marginRight: "5px" }}>

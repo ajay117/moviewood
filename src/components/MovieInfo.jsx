@@ -41,7 +41,7 @@ function MovieInfo() {
     )
       .then((response) => response.json())
       .then((response) => {
-        // console.log(response.credits);
+        console.log(response.credits);
         setVideos(response.videos.results);
         setMovieDetails(response);
         setCast(response.credits.cast);
