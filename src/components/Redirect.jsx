@@ -9,7 +9,7 @@ const Redirect = () => {
 
 useEffect(() => {
     if(currentUrl === '/') {
-        navigate('/1')
+        navigate('/page/1')
     }
 },[])
 
