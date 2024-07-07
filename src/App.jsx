@@ -8,21 +8,11 @@ import { useEffect, useState } from "react";
 import Redirect from "./components/Redirect";
 
 function App() {
-  const [page, setPage] = useState(1);
-
-  const nextPage = () => {
-    setPage((previousPage) => previousPage + 1);
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "instant",
-    });
-  };
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Redirect />} />
-        <Route path="/:page" element={<Home nextPage={nextPage} page={page} />} />
+        <Route path="/page/:page" element={<Home />} />
         <Route path="/movie/:id" element={<MovieInfo />} />
         <Route path="/tvshow/:id" element={<TvInfo />} />
         <Route path="/people/:id" element={<PeopleInfo />} />
