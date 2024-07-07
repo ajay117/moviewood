@@ -13,8 +13,10 @@ import HeroSection from "./HeroSection";
 import Footer from "./Footer";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function Home({nextPage,page}) {
+function Home( ) {
   const [showContent, setShowContent] = useState("movie");
   const [contentList, setContentList] = useState([]);
   const [tab, setTab] = useState("now playing");
@@ -24,6 +26,10 @@ function Home({nextPage,page}) {
   const [searchQuery, setSearchQuery] = useState("");
   const [totalPages, setTotalPages] = useState(0);
   const [isResultEmpty, setIsResultEmpty] = useState(false);
+
+  const { page } = useParams();
+  const navigate = useNavigate();
+  console.log({ page });
 
   const handleSearchInputChange = (e) => {
     setSearchInput(e.target.value);
@@ -69,23 +75,6 @@ function Home({nextPage,page}) {
     setTab(event.target.innerText.toLowerCase());
   };
 
-  // const nextPage = () => {
-  //   setPage((previousPage) => previousPage + 1);
-  //   window.scroll({
-  //     top: 0,
-  //     left: 0,
-  //     behavior: "instant",
-  //   });
-  // };
-
-  const prevPage = () => {
-    setPage((previousPage) => previousPage - 1);
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "instant",
-    });
-  };
 
   useEffect(() => {
     const controller = new AbortController();
@@ -220,7 +209,10 @@ function Home({nextPage,page}) {
                   <Box sx={{ marginTop: "30px", textAlign: "center" }}>
                     <Button
                       sx={{ marginBottom: "10px" }}
-                      onClick={prevPage}
+                      onClick={() => {
+                        navigate(`/page/${Number(page) - 1}`);
+                        window.scrollTo(0, 0);
+                      }}
                       variant="outlined"
                     >
                       <ArrowBackIosNewIcon />
@@ -236,7 +228,10 @@ function Home({nextPage,page}) {
                   <Box sx={{ marginTop: "30px", textAlign: "center" }}>
                     <Button
                       sx={{ marginBottom: "10px" }}
-                      onClick={nextPage}
+                      onClick={() => {
+                        navigate(`/page/${Number(page) + 1}`);
+                        window.scrollTo(0, 0);
+                      }}
                       variant="outlined"
                     >
                       <ArrowForwardIosIcon />
