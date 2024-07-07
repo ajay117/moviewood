@@ -14,12 +14,11 @@ import Footer from "./Footer";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-function Home() {
+function Home({nextPage,page}) {
   const [showContent, setShowContent] = useState("movie");
   const [contentList, setContentList] = useState([]);
   const [tab, setTab] = useState("now playing");
   const [value, setValue] = useState(0);
-  const [page, setPage] = useState(1);
   const previousPageStateRef = useRef(1);
   const [searchInput, setSearchInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -70,14 +69,14 @@ function Home() {
     setTab(event.target.innerText.toLowerCase());
   };
 
-  const nextPage = () => {
-    setPage((previousPage) => previousPage + 1);
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "instant",
-    });
-  };
+  // const nextPage = () => {
+  //   setPage((previousPage) => previousPage + 1);
+  //   window.scroll({
+  //     top: 0,
+  //     left: 0,
+  //     behavior: "instant",
+  //   });
+  // };
 
   const prevPage = () => {
     setPage((previousPage) => previousPage - 1);
