@@ -49,14 +49,17 @@ function Home() {
     if (link === "tv") {
       setTab("airing today");
       setShowContent("tv");
+      setPage(1)
     }
     if (link === "movie") {
       setTab("now playing");
       setShowContent("movie");
+      setPage(1)
     }
     if (link === "person" && showContent !== "person") {
       setTab("popular");
       setShowContent("person");
+      setPage(1)
     }
     if (link !== showContent) {
       setContentList([]);
@@ -68,6 +71,7 @@ function Home() {
   const handleTabChange = (event, newValue) => {
     setValue(newValue);
     setTab(event.target.innerText.toLowerCase());
+    setPage(1);
   };
 
   const nextPage = () => {
