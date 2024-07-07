@@ -5,6 +5,7 @@ import MovieInfo from "./components/MovieInfo";
 import TvInfo from "./components/TvInfo";
 import PeopleInfo from "./components/PeopleInfo";
 import { useEffect, useState } from "react";
+import Redirect from "./components/Redirect";
 
 function App() {
   const [page, setPage] = useState(1);
@@ -20,7 +21,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home nextPage={nextPage} page={page} />} />
+        <Route path="/" element={<Redirect />} />
+        <Route path="/:page" element={<Home nextPage={nextPage} page={page} />} />
         <Route path="/movie/:id" element={<MovieInfo />} />
         <Route path="/tvshow/:id" element={<TvInfo />} />
         <Route path="/people/:id" element={<PeopleInfo />} />
