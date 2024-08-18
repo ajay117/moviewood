@@ -26,7 +26,7 @@ function Header() {
         <Button variant="text" sx={{ fontSize: { xs: "14px", sm: "15px" } }}>
           <Link to="/" style={{ display: "flex",alignItems: "center" ,textDecoration: "none" }}>
             <HomeIcon style={{ marginRight: "1px", color: "black" }} />
-            {/* Homepage */}
+            Homepage
           </Link>
         </Button>
       </Tooltip>

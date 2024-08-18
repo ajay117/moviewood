@@ -13,23 +13,18 @@ import HeroSection from "./HeroSection";
 import Footer from "./Footer";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
-function Home( ) {
+function Home() {
   const [showContent, setShowContent] = useState("movie");
   const [contentList, setContentList] = useState([]);
   const [tab, setTab] = useState("now playing");
   const [value, setValue] = useState(0);
+  const [page, setPage] = useState(1);
   const previousPageStateRef = useRef(1);
   const [searchInput, setSearchInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [totalPages, setTotalPages] = useState(0);
   const [isResultEmpty, setIsResultEmpty] = useState(false);
-
-  const { page } = useParams();
-  const navigate = useNavigate();
-  console.log({ page });
 
   const handleSearchInputChange = (e) => {
     setSearchInput(e.target.value);
@@ -54,17 +49,14 @@ function Home( ) {
     if (link === "tv") {
       setTab("airing today");
       setShowContent("tv");
-      setPage(1)
     }
     if (link === "movie") {
       setTab("now playing");
       setShowContent("movie");
-      setPage(1)
     }
     if (link === "person" && showContent !== "person") {
       setTab("popular");
       setShowContent("person");
-      setPage(1)
     }
     if (link !== showContent) {
       setContentList([]);
@@ -76,9 +68,25 @@ function Home( ) {
   const handleTabChange = (event, newValue) => {
     setValue(newValue);
     setTab(event.target.innerText.toLowerCase());
-    setPage(1);
   };
 
+  const nextPage = () => {
+    setPage((previousPage) => previousPage + 1);
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  };
+
+  const prevPage = () => {
+    setPage((previousPage) => previousPage - 1);
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  };
 
   useEffect(() => {
     const controller = new AbortController();
@@ -213,10 +221,7 @@ function Home( ) {
                   <Box sx={{ marginTop: "30px", textAlign: "center" }}>
                     <Button
                       sx={{ marginBottom: "10px" }}
-                      onClick={() => {
-                        navigate(`/page/${Number(page) - 1}`);
-                        window.scrollTo(0, 0);
-                      }}
+                      onClick={prevPage}
                       variant="outlined"
                     >
                       <ArrowBackIosNewIcon />
@@ -232,10 +237,7 @@ function Home( ) {
                   <Box sx={{ marginTop: "30px", textAlign: "center" }}>
                     <Button
                       sx={{ marginBottom: "10px" }}
-                      onClick={() => {
-                        navigate(`/page/${Number(page) + 1}`);
-                        window.scrollTo(0, 0);
-                      }}
+                      onClick={nextPage}
                       variant="outlined"
                     >
                       <ArrowForwardIosIcon />

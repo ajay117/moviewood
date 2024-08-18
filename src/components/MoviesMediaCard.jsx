@@ -49,7 +49,7 @@ export default function MoviesMediaCard({ movie }) {
           />
         </div>
       </CardContent>
-      <Link target="_blank" to={`/movie/${movie.id}`} style={linkStyle}>
+      <Link to={`/movie/${movie.id}`} style={linkStyle}>
         <div>
           <Button sx={{ width: "100%" }} variant="contained">
             More Info
