@@ -1,4 +1,4 @@
-[Go to Moviewood homepage](“https://moviewood.netlify.app/”)
+[Go to Moviewood homepage](https://moviewood.netlify.app/)
 
 Moviewood
 =========
