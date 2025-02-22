@@ -1,6 +1,6 @@
- moviewood
+ [Go to Moviewood homepage](www.moviewood.netlify.app)
 
-moviewood
+Moviewood
 =========
 
 Welcome to moviewood, a web app where you can explore movies, TV shows, and famous people!
